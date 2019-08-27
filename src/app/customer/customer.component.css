@@ -1,0 +1,148 @@
+.vertical-menu {
+    background-color: grey;
+    height: 100%;
+    width: 175px;
+    top: 0.1;
+    left: 0;
+    padding-top: 10px;
+    position: fixed;
+    z-index: 1;
+    top: 1;
+    left: 0;
+    
+    }
+    .vertical-menu #bttn,#bttn1,#bttn2,#bttn3{
+    color: white;
+    display: block;
+    width: 175px;
+    padding: 15px;
+    height: 40px;
+    text-decoration: none;
+   
+ 
+    }
+    #bttn:hover{background-color:rgb(96, 97, 96);}
+    #bttn1:hover{background-color:rgb(96, 97, 96);}
+    #bttn2:hover{background-color:rgb(96, 97, 96);}
+    #bttn3:hover{background-color:rgb(96, 97, 96);} 
+
+    .form-group.required.control-label:after{
+        color: red;
+        content: "*";
+        position: fixed;
+     } 
+         
+     input[type=email], input[type=password] {
+         width: 300px;
+        
+         margin: 8px 0;
+         display: inline-block;
+         border: 1px solid #ccc;
+         box-sizing: border-box;
+    
+     }
+     .container {
+         padding: 20px;
+     }
+     .modal {
+         display: none;
+         position: right;
+         z-index: 1; 
+         left: 0;
+         top: 0;
+         width: 100%; 
+         height: 100%; 
+         overflow: auto; 
+         background-color: rgb(0,0,0); 
+         background-color: rgba(0,0,0,0.4); 
+         padding-top: 60px;
+     }
+     .modal-content {
+         background-color: #fefefe;
+         margin: 5% auto 15% auto;
+         border: 1px solid #888;
+         width: 35%; 
+     }
+     .close {
+         position: absolute;
+         right: 1px;
+         top: 15px;
+         color: red;
+         font-size: 50px;
+         font-weight: bold;
+     }
+     .close:hover,
+     .close:focus {
+         color: blue;
+         cursor: pointer;
+     }
+     .my-container img {
+         position: fixed;
+         left: 0;
+         top: 7%;
+         width: 100%;
+         height: auto;
+         opacity: 0.2;
+     }
+     .form_bg {
+        margin: 0px auto 0px;
+        background-color:#eee;
+        color:grey;
+        padding:20px;
+        border-radius:50px;
+        margin: 0;
+        padding: 0;
+        background: rgb(255, 255, 255);
+        border:1px solid teal;
+        width: 350px;
+        height: 300px;
+    }
+    .align-center {
+        text-align:center;
+    }
+    #c {
+        background-size: 100% 195%;
+         background-repeat: no-repeat;
+     }
+     form {
+        width: 300px;
+        margin: 0 auto;
+    }
+    
+    img {
+        background-size:cover
+    
+    }
+    
+    .box{
+        padding: 6px;
+        height: 30px;
+        width: 10cm;
+        color:black;
+        border-radius: 10px;
+        
+      }
+
+    .textarea{
+        padding: 6px;
+        color:black;
+        border-radius: 10px;
+      }
+      body {
+        background-size:cover;
+        background-repeat: no-repeat;
+        
+    }
+    img{
+        -webkit-filter: blur(px); /* Safari 6.0 - 9.0 */
+        filter: blur(1px);
+    }
+    html {
+        overflow-y: hidden;
+        overflow-x: hidden;
+    }
+    ::-webkit-scrollbar {
+        width: 0px;  /* remove scrollbar space */
+        background: transparent;  /* optional: just make scrollbar invisible */
+    }
+  

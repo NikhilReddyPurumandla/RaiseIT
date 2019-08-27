@@ -1,0 +1,204 @@
+
+
+<div class="row">
+    
+    
+    <div class="col-md-12">                     
+        <div class="col-md-2">
+            
+            <div class="vertical-menu" >
+               
+                <a routerLink="/user" routerLinkActive="active" id="bttn" ><i class="glyphicon glyphicon-check"></i> Profile</a><br>
+                <a routerLink="/customer" routerLinkActive="active" id="bttn1"> <i class="glyphicon glyphicon-user"></i> Customers</a><br>
+                <a routerLink="/serviceticket" routerLinkActive="active" id="bttn2"> <i class="fa fa-institution"></i>  Backlog Tickets</a><br>
+                <a routerLink="/viewService" routerLinkActive="active" id="bttn2"> <i class="fa fa-institution"></i>  Solved Tickets</a><br>
+                <a routerLink="/logout" routerLinkActive="active" id="bttn3" ><i class="glyphicon glyphicon-log-out"></i> logout</a><br>
+            </div>
+        </div>
+<div class="col-md-8" >
+        <button class="btn btn-warning"  onclick="document.getElementById('id01').style.display='block' "   style="float: right;width:auto; right: 10;">New Customer</button> 
+        <br><br>
+        <table datatable class='table table-hover table-bordered table-striped'>
+                <thead>
+                <tr class='active'>
+                    <td>AccountId</td>
+                    <td>Name</td>
+                    <td>Address</td>
+                    <td>Email</td>
+                    <td>Phone</td>
+                    <td>Edit Details</td>
+                    <td>Ticket</td>
+                    <td>Delete</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let details of customerDetails">
+                        <td>{{details.id}}</td>
+                        <td>{{details.name}}</td>
+                        <td>{{details.houseNo}},{{details.street}},{{details.city}},{{details.state}},{{details.zipCode}}</td>
+                        <td>{{details.email}}</td>
+                        <td>{{details.phone}}</td>
+                        <td><i class="fa fa-edit" style="color:inherit" (click)="getCustomer(details.id,'id03')"  ></i></td>
+                        <td><i class="fa fa-plus" style="color:green ; text-align: center;"  (click)="getCustomer(details.id,'id02')" ></i></td>
+                        <td><i class="fa fa-trash" style="color:red"  (click)=delete(details.id)></i></td>
+                    </tr>
+                </tbody>
+
+        </table>
+</div>
+<!-- <div class = "col-md-1">
+        <button class="btn btn-warning"  onclick="document.getElementById('id01').style.display='block' "   style="float: right;width:auto; right: 10;">Repos</button> 
+</div> -->
+</div>
+</div>
+
+
+
+<div id="id01" class="modal">
+    
+        <form class="modal-content animate" #customerForm = "ngForm" (ngSubmit)="onSubmit()" novalidate>
+          
+            <div class="container">
+                <button type="button" class="w3-button w3-display-topright" onclick="document.getElementById('id01').style.display='none'"  style="margin-left: 5cm;color:red ">&times;</button>       
+
+                    <div class="col-xs-2 col-md-2"> 
+        <h3>Add Customer</h3>
+       
+        <h4> Name  <i  style="color: red;">*</i></h4>
+        <input class="box" type="text" name="name" #name = "ngModel" placeholder="name" [(ngModel)]="customer.name" required>
+        
+       <h4>House No</h4>
+        <input class="box" type="text" name="houseNo" placeholder="houseNo" [(ngModel)]="customer.houseNo">
+        
+        <h4>Street</h4>
+        <input class="box" type="text" name="street" placeholder="street" [(ngModel)]="customer.street">
+       
+        <h4>City</h4>
+        <input class="box" type="text" name="city" placeholder="city" [(ngModel)]="customer.city">
+       
+        <h4>State</h4>
+        <input class="box" type="text" name="state" placeholder="state" [(ngModel)]="customer.state">
+       
+        <h4>ZipCode</h4>
+        <input class="box" type="text" name="zipCode" placeholder="zipCode" [(ngModel)]="customer.zipCode">
+        
+        <h4>Phone Number  <i  style="color: red;">*</i></h4>
+        <input class="box" type="text" name="phone" placeholder="phone" [(ngModel)]="customer.phone" required>
+
+        <h4>Email  <i  style="color: red;">*</i></h4>
+        <input class="box" type="text" name="mail" placeholder="mailId" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" #email = "ngModel" [class.is-invalid]="email.is-invalid && email.touched" [(ngModel)]="customer.email">
+        
+        <div *ngIf="email.errors && (email.invalid || email.touched)">
+                <small class="text-danger" *ngIf = "email.errors.required">Email is required</small>
+                <small class="text-danger" *ngIf = "email.errors.pattern">Email should be of format "example@domain.com"</small>
+            </div>
+
+        <br><br>
+				
+				<button [disabled]="customerForm.form.invalid" type="submit" style=" margin:auto; display:block;" class="btn btn-success col-xs-8 col-md-8 a">Submit</button>
+        
+            </div> </div>
+        </form>
+    </div>
+<script>
+// Get the modal
+var modal = document.getElementById('id01');
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+      modal.style.display = "none";
+  }
+}
+</script>
+
+
+<div id="id02" class="modal" >
+    
+        <form class="modal-content animate" #ticketForm = "ngForm" (ngSubmit)="onSubmitTicket()" novalidate>
+          
+            <div class="container">
+                    <button type="button" class="w3-button w3-display-topright" onclick="document.getElementById('id02').style.display='none'"  style="margin-left: 5cm;color:red ">&times;</button>       
+
+
+                    <div class="col-xs-2 col-md-2"> 
+        <h3>Add Ticket</h3>
+       
+        <h4> Customer Id  <i  style="color: red;">*</i></h4>
+        <input class="box" type="text" name="accountid" #name = "ngModel" placeholder="id" [(ngModel)]="serviceRequest.accountid" value = {{customerdetailsById.id}} readonly>
+        
+       <h4>Title</h4>
+        <input class="box" type="text" name="title" placeholder="title" [(ngModel)]="serviceRequest.title">
+       
+        <h4>Description</h4>
+        <textarea class="textarea" rows='4' cols='45' name="description" placeholder="description" [(ngModel)]="serviceRequest.description"></textarea>
+        
+        <!-- <h4>Status</h4>
+        <select name=status [(ngModel)]="serviceRequest.status">
+                <option value=Request recieved>Request_Recieved</option>
+                <option value=Request verified>Request_Verified</option>
+                <option value=Service provided>Service_Provided</option>
+        </select> -->
+         <br><br>
+				<button [disabled]="ticketForm.form.invalid" type="submit" style=" margin:auto; display:block;" class="btn btn-success col-xs-8 col-md-8 a">Submit</button>
+        
+            </div> </div>
+        </form>
+    </div>
+<script>
+// Get the modal
+var modal = document.getElementById('id02');
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+      modal.style.display = "none";
+  }
+}
+</script>
+
+<div id="id03" class="modal">
+    
+        <form class="modal-content animate" #customerEditForm = "ngForm" (ngSubmit)="onEdit()" novalidate>
+          
+            <div class="container">
+                <button type="button" class="w3-button w3-display-topright" onclick="document.getElementById('id03').style.display='none'"  style="margin-left: 5cm;color:red ">&times;</button>       
+
+                    <div class="col-xs-2 col-md-2"> 
+        <h4>Edit {{customerdetailsById.name}}</h4>
+        
+       <h5>House No</h5>
+        <input class="box" type="text" name="houseNo" placeholder="houseNo" [(ngModel)]="customerdetailsById.houseNo">
+        
+        <h5>Street</h5>
+        <input class="box" type="text" name="street" placeholder="street" [(ngModel)]="customerdetailsById.street">
+       
+        <h5>City</h5>
+        <input class="box" type="text" name="city" placeholder="city" [(ngModel)]="customerdetailsById.city">
+        
+        <h5>Phone Number  <i  style="color: red;">*</i></h5>
+        <input class="box" type="text" name="phone" placeholder="phone" [(ngModel)]="customerdetailsById.phone" required>
+
+        <h5>Email  <i  style="color: red;">*</i></h5>
+        <input class="box" type="text" name="mail" placeholder="mailId" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" #email = "ngModel" [class.is-invalid]="email.is-invalid && email.touched" [(ngModel)]="customerdetailsById.email">
+        
+        <div *ngIf="email.errors && (email.invalid || email.touched)">
+                <small class="text-danger" *ngIf = "email.errors.required">Email is required</small>
+                <small class="text-danger" *ngIf = "email.errors.pattern">Email should be of format "example@domain.com"</small>
+            </div>
+
+        <br><br>
+				
+				<button [disabled]="customerEditForm.form.invalid" type="submit" style=" margin:auto; display:block;" class="btn btn-success col-xs-8 col-md-8 a">Submit</button>
+        
+            </div> </div>
+        </form>
+    </div>
+<script>
+// Get the modal
+var modal = document.getElementById('id03');
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+      modal.style.display = "none";
+  }
+}
+</script>

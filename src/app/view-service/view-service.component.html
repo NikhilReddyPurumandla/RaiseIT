@@ -1,0 +1,42 @@
+<div class="row"> 
+    <div class="col-md-12">
+        <div class="col-md-3">
+            
+            <div class="vertical-menu" >
+               
+                <a routerLink="/user" routerLinkActive="active" id="bttn" ><i class="glyphicon glyphicon-check"></i> Profile</a><br>
+                <a routerLink="/customer" routerLinkActive="active" id="bttn1"> <i class="glyphicon glyphicon-user"></i> Customers</a><br>
+                <a routerLink="/serviceticket" routerLinkActive="active" id="bttn2"> <i class="fa fa-institution"></i>  Backlog Tickets</a><br>
+                <a routerLink="/viewService" routerLinkActive="active" id="bttn2"> <i class="fa fa-institution"></i>  Solved Tickets</a><br>
+                <a routerLink="/logout" routerLinkActive="active" id="bttn3" ><i class="glyphicon glyphicon-log-out"></i> logout</a><br>
+            </div>
+        
+        </div>
+        <div class="col-md-8" >
+                <!-- <table datatable class="row-border hover"> -->
+                    <table datatable class='table table-hover table-bordered table-striped'>
+                            <thead>
+                            <tr class='active'>
+                                <td> ID </td>
+                                <td>AccountId</td>
+                                <td>Title</td>
+                                <td>Status</td>
+                                <td>Description</td>
+                                <td>OpenDate</td>
+                                <td>CloseDate</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let details of ticketDetails; index as i">
+                                    <td>{{i+1}}</td>
+                                    <td>{{details.accountid}}</td>
+                                    <td>{{details.title}}</td>
+                                    <td>{{details.status}}</td>
+                                    <td>{{details.description}}</td>
+                                    <td>{{details.opendate | date: 'dd-MM-yyyy'}}</td>
+                                    <td>{{details.closedate | date: 'dd-MM-yyyy'}}</td>
+                                </tr>
+                            </tbody>
+            
+                    </table>
+        </div></div></div>

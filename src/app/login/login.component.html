@@ -1,0 +1,88 @@
+<br><br>
+<div id="id01" class="modal">
+        <form class="modal-content animate" #loginForm = "ngForm" (ngSubmit)="onSubmits()" novalidate>
+          
+            <div class="container">
+                <button type="button" class="w3-button w3-display-topright" onclick="document.getElementById('id01').style.display='none'"  style="margin-left: 5cm;color:red ">&times;</button>       
+
+                    <div class="col-xs-2 col-md-2"> 
+        <h3>Signup</h3>
+       
+        <h4> Name  <i  style="color: red;">*</i></h4>
+        <input class="box" type="text" name="name" #name = "ngModel" [class.is-invalid]="name.is-invalid && name.touched" placeholder="name" [(ngModel)]="user.name">
+        
+       <h4>Date Of Birth</h4>
+        <input class="box" type="date" name="DateOfBirth" placeholder="DOB" [(ngModel)]="user.dob">
+        
+        <h4>Gender</h4>
+        <input type="radio" name="gender" value="male" [(ngModel)]="user.gender"> Male
+        <input type="radio"  name="gender" value="female" [(ngModel)]="user.gender"> Female
+        
+        <h4>Email  <i  style="color: red;">*</i></h4>
+        <input class="box" type="text" name="mail" placeholder="mailId" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" #email = "ngModel" [class.is-invalid]="email.is-invalid && email.touched" [(ngModel)]="user.email">
+        
+        <div *ngIf="email.errors && (email.invalid || email.touched)">
+                <small class="text-danger" *ngIf = "email.errors.required">Email is required</small>
+                <small class="text-danger" *ngIf = "email.errors.pattern">Email should be of format "example@domain.com"</small>
+            </div>
+    
+        <h4>Password  <i  style="color: red;">*</i></h4>
+        <input class="box" style="padding: 6px;height: 30px;width: 10cm;color:black;border-radius: 20px" type="password" name="password" placeholder="password" pattern= "^\d{4}$" #password = "ngModel" [class.is-invalid]="password.is-invalid && password.touched"  [(ngModel)]="user.password"> 
+      
+    
+        <h4>Education Details</h4>
+        <select id="soflow-color" #option = "ngModel" (blur) = "validate(option.value)" (change) = "validate(option.value)" [class.is-invalid]="optionHasError && option.touched" class = "custom-select" name = "option" [(ngModel)]="user.education">
+        <option>Select</option>    
+        <option value="M.tech">M.TECH</option>
+        <option value="MBA">MBA</option>
+        <option value="B.TECH">B.TECH</option>
+        </select>
+
+        <br><br>
+				
+				<button  type="submit" style=" margin:auto; display:block;" class="btn btn-success col-xs-8 col-md-8 a">Submit</button>
+    
+   </div> </div>
+ 
+  </form>
+  
+    </div>
+<script>
+var modal = document.getElementById('id01');
+window.onclick = function(event) {
+  if (event.target == modal) {
+      modal.style.display = "none";
+  }
+}
+</script>
+
+
+
+<div class="container col-md-12">
+  <div class="row col-md-5"></div>
+  <div class="row col-md-6"><br><br><br>
+    <div class="form_bg">
+      <form  [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+         <h2 class="text-center">Admin Login</h2>
+        <br/>
+                
+
+        <div class="form-group" >
+          <input type="email" class="form-control" formControlName="email"  placeholder="User id" required>
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" formControlName="password" placeholder="password" required>
+          </div>
+        
+<div class="form-group">
+    <a onclick="document.getElementById('id01').style.display='block'">create new account</a>
+
+</div>
+           <div class="align-center">
+        <button type="submit" class="btn btn-success" >Login</button>
+        <div *ngIf="error" class="alert alert-error" style="color:red;">{{error}}</div>
+          </div>
+      </form>
+    </div>
+  </div>
+</div>
